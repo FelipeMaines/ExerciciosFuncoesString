@@ -100,41 +100,7 @@ namespace ExerciciosFuncoesString.ConsoleApp1
 
         }
 
-        //static void questaoSeis(string municipios)
-        //{
-        //    List<string> estados = new List<string>();
-
-        //    var lines = File.ReadAllLines(@"C:\Users\felip\Área de Trabalho\cidades.csv");
-
-        //    foreach (var line in lines)
-        //    {
-        //        string teste = line.Split(";")[3];
-
-        //        string alfabeto = "abcdefghijklmnopqrstuvwxyz".ToUpper();
-
-
-        //        foreach (var letra in alfabeto)
-        //        {
-        //            if (teste.StartsWith(letra))
-        //            {
-        //                if (!estados.Contains(letra.ToString()))
-        //                {
-        //                    int contador = 0;
-        //                    estados[contador] = new List<>();
-        //                    contador++;
-        //                }
-        //            }
-        //        }
-        //    }
-
-
-
-        //}
-
-
-
-
-
+       
         static void Main(string[] args)
         {
             int tamanhoFrase = 0;
@@ -159,7 +125,6 @@ namespace ExerciciosFuncoesString.ConsoleApp1
 
             string municipios = File.ReadAllText(@"C:\Users\felip\Área de Trabalho\cidades.csv");
 
-            
 
 
         }
