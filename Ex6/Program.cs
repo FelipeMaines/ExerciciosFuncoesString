@@ -10,7 +10,7 @@ namespace Ex6
             do
             {
                 var lines = File.ReadAllLines(@"C:\Users\felip\Área de Trabalho\cidades.csv");
-                Console.WriteLine("(1) Procurar por estado\n(2) Procurar por letra ");
+                Console.WriteLine("(1) Procurar por estado\n(2) Procurar por letra\n(3) Mostrar todas as cidades ordenado!");
 
                 valor = int.Parse(Console.ReadLine());
 
@@ -26,6 +26,10 @@ namespace Ex6
                         procuraLetra(lines);
                         break;
 
+                    case 3:
+                        mostrarOrdenado(lines); 
+                        break;
+
                 }
 
             }while(valor != 0);
@@ -37,36 +41,55 @@ namespace Ex6
             Console.WriteLine("Qual estado: ");
             string cidadeProcura = Console.ReadLine();
 
-            string[] palavras = cidadeProcura.Split(' ');
-            string iniciais = "";
-            foreach (string palavra in palavras)
+            if(cidadeProcura.Contains(" "))
             {
-                iniciais += palavra[0];
-            }
-
-            foreach (var line in lines)
-            {
-                string estado = line.Split(';')[3];
-
-                string[] palavrasEstado = estado.Split(' ');
-                string iniciaisEstado = "";
-
-                foreach (string palavra in palavrasEstado)
+                string[] palavras = cidadeProcura.Split(' ');
+                string iniciais = "";
+                foreach (string palavra in palavras)
                 {
-                    var palavraSemEspaco = palavra.Trim();
-                    iniciaisEstado += palavraSemEspaco[0];
+                    iniciais += palavra[0];
                 }
 
-                string cidade = line.Split(';')[2];
-
-                if (String.Compare(iniciaisEstado, iniciais, true) == 0)
+                foreach (var line in lines)
                 {
-                    Console.WriteLine(cidade);
+                    string estado = line.Split(';')[3];
+
+                    string[] palavrasEstado = estado.Split(' ');
+                    string iniciaisEstado = "";
+
+                    foreach (string palavra in palavrasEstado)
+                    {
+                        var palavraSemEspaco = palavra.Trim();
+                        iniciaisEstado += palavraSemEspaco[0];
+                    }
+
+                    string cidade = line.Split(';')[2];
+
+                    if (String.Compare(iniciaisEstado, iniciais, true) == 0)
+                    {
+                        Console.Write(cidade + ", ");
+                    }
+                }
+
+                Console.ReadLine();
+                Console.Clear();
+            }
+
+            else
+            {
+                foreach (var line in lines)
+                {
+                    string estado = line.Split(';')[3];
+                    string cidade = line.Split(';')[2];
+
+                    if (String.Compare(cidadeProcura, estado, true) == 0) ;
+                    {
+                        Console.Write(cidade + ", ");
+                    }
                 }
             }
 
-            Console.ReadLine();
-            Console.Clear();
+            
         }
 
         private static void procuraLetra(string[] lines)
@@ -89,6 +112,25 @@ namespace Ex6
 
             Console.ReadLine();
             Console.Clear();
+        }
+
+        static void mostrarOrdenado(string[] lines)
+        {
+            string letras = "abcdefghijklmnopqrstuvwxyz";
+
+            foreach (var letra in letras)
+            {
+                foreach (var line in lines)
+                {
+                    string cidade = line.Split(';')[2];
+                    string estado = line.Split(";")[3];
+
+                    if (cidade.StartsWith(letra.ToString(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine($"Cidade: {cidade}, Estado: {estado}");
+                    }
+                }
+            }
         }
     }
 }
