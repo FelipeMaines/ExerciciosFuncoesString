@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciciosFuncoesString.ConsoleApp1", "ExerciciosFuncoesString.ConsoleApp1\ExerciciosFuncoesString.ConsoleApp1.csproj", "{BE41B18B-3761-4726-BD05-961385B335E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex6", "Ex6\Ex6.csproj", "{6FCA0894-5D0E-4100-8EDB-76F8A25D56AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ex6", "Ex6\Ex6.csproj", "{6FCA0894-5D0E-4100-8EDB-76F8A25D56AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

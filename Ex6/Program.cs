@@ -9,7 +9,7 @@ namespace Ex6
             int valor = 1;
             do
             {
-                var lines = File.ReadAllLines(@"C:\Users\felip\Área de Trabalho\cidades.csv");
+                var lines = File.ReadAllLines(@"../../../Cidades.csv");
                 Console.WriteLine("(1) Procurar por estado\n(2) Procurar por letra\n(3) Mostrar todas as cidades ordenado!");
 
                 valor = int.Parse(Console.ReadLine());
@@ -38,12 +38,34 @@ namespace Ex6
 
         private static void procuraPorEstado(string[] lines)
         {
+            bool temEspaco = false;
             Console.WriteLine("Qual estado: ");
-            string cidadeProcura = Console.ReadLine();
+            string estadoProcura = Console.ReadLine();
 
-            if(cidadeProcura.Contains(" "))
+            if (estadoProcura.Contains(" "))
             {
-                string[] palavras = cidadeProcura.Split(' ');
+                temEspaco = true;
+            }
+
+
+            if (!temEspaco)
+            {
+                Console.WriteLine($"As cidades do estado {estadoProcura}");
+                foreach (var line in lines)
+                {
+                    string estado = line.Split(';')[3];
+                    string cidade = line.Split(';')[2];
+
+                    if (estado.Contains(estadoProcura, StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine(cidade);
+                    }
+                }
+                Console.ReadLine();
+            }
+            else
+            {
+                string[] palavras = estadoProcura.Split(' ');
                 string iniciais = "";
                 foreach (string palavra in palavras)
                 {
@@ -67,31 +89,15 @@ namespace Ex6
 
                     if (String.Compare(iniciaisEstado, iniciais, true) == 0)
                     {
-                        Console.Write(cidade + ", ");
+                        Console.WriteLine(cidade);
                     }
                 }
 
                 Console.ReadLine();
                 Console.Clear();
+
             }
-
-            else
-            {
-                foreach (var line in lines)
-                {
-                    string estado = line.Split(';')[3];
-                    string cidade = line.Split(';')[2];
-
-                    if (String.Compare(cidadeProcura, estado, true) == 0) ;
-                    {
-                        Console.Write(cidade + ", ");
-                    }
-                }
-            }
-
-            
         }
-
         private static void procuraLetra(string[] lines)
         {
             Console.WriteLine("Qual letra deseja procurar?");
@@ -127,7 +133,7 @@ namespace Ex6
 
                     if (cidade.StartsWith(letra.ToString(), StringComparison.OrdinalIgnoreCase))
                     {
-                        Console.WriteLine($"Cidade: {cidade}, Estado: {estado}");
+                        Console.WriteLine($"Cidade:{cidade}, Estado:{estado}");
                     }
                 }
             }
